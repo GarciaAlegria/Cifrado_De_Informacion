@@ -1,3 +1,9 @@
+# Autor: Abner Ivan Garcia Alegria - 21285
+# Fecha: 2024/28/01
+# Descripción: Implementación de funciones para convertir texto a binario, base64, ascii, xor, generar llaves dinámicas y cifrar con llave fija.
+# Universidad del Valle de Guatemala
+# Cifrados de Información
+
 # 1. Conversión de Palabras en Texto ASCII a Binario
 def ascii_to_binary(text):
     return ''.join(format(ord(c), '08b') for c in text)
@@ -68,6 +74,15 @@ def cifrar_ascii_fijo(texto, llave):
     cifrado_binario += xor_binario(bloque, llave_binario)
   return binary_to_ascii(cifrado_binario)
 
+# 9. Generar un nuevo cypher en ASCII con una llave k de tamaño dinámico
+def cifrar_ascii_dinamico(texto, llave):
+  """Cifra un texto ASCII con una llave de tamaño dinámico."""
+  texto_binario = ascii_to_binary(texto)
+  llave_binario = ascii_to_binary(llave)
+  llave_extendida = (llave_binario * (len(texto_binario) // len(llave_binario) + 1))[:len(texto_binario)]
+  cifrado_binario = xor_binario(texto_binario, llave_extendida)
+  return binary_to_ascii(cifrado_binario)
+
 
 # Ejemplo de uso
 if __name__ == "__main__":
@@ -93,6 +108,8 @@ if __name__ == "__main__":
     print("Llave dinámica:", generar_llave_dinamica(8))
     print("-------------------------------------------------------")
     print("Cifrado ASCII fijo:", cifrar_ascii_fijo(text, llave_fija))
+    print("-------------------------------------------------------")
+    print("Cifrado ASCII dinámico:", cifrar_ascii_dinamico(text, llave_dinamica))
     print("-------------------------------------------------------")
 
 
