@@ -4,44 +4,46 @@
 # Universidad del Valle de Guatemala
 # Cifrados de Información
 
+def clean_text(texto):
+    """Limpia el texto dejando solo letras del alfabeto español en minúsculas."""
+    alfabeto = "abcdefghijklmnñopqrstuvwxyz"
+    texto = texto.lower()
+    return ''.join(c for c in texto if c in alfabeto)
+
 def cifrar_afin(mensaje, a, b):
-    """Cifra un mensaje usando el cifrado afín."""
+    """Cifra un mensaje usando el cifrado afín con alfabeto español."""
+    alfabeto = "abcdefghijklmnñopqrstuvwxyz"
+    mensaje = clean_text(mensaje)
     resultado = ""
+    
     for letra in mensaje:
-        if 'A' <= letra <= 'Z':
-            num = ord(letra) - ord('A')
-            cifrado = (a * num + b) % 26
-            resultado += chr(cifrado + ord('A'))
-        elif 'a' <= letra <= 'z':
-            num = ord(letra) - ord('a')
-            cifrado = (a * num + b) % 26
-            resultado += chr(cifrado + ord('a'))
-        else:
-            resultado += letra  # Mantener otros caracteres sin cambios
+        if letra in alfabeto:
+            pos = alfabeto.index(letra)
+            nueva_pos = (a * pos + b) % 27
+            resultado += alfabeto[nueva_pos]
+            
     return resultado
 
 def descifrar_afin(mensaje, a, b):
-    """Descifra un mensaje usando el cifrado afín."""
-    # Calcular el inverso multiplicativo de 'a' (modular 26)
-    for i in range(26):
-        if (a * i) % 26 == 1:
+    """Descifra un mensaje usando el cifrado afín con alfabeto español."""
+    alfabeto = "abcdefghijklmnñopqrstuvwxyz"
+    mensaje = clean_text(mensaje)
+    
+    # Calcular el inverso multiplicativo de 'a' (modulo 27)
+    for i in range(27):
+        if (a * i) % 27 == 1:
             a_inv = i
             break
     else:
-        raise ValueError("La clave 'a' no tiene inverso multiplicativo (debe ser coprimo con 26).")
-
+        raise ValueError("La clave 'a' no tiene inverso multiplicativo (debe ser coprimo con 27)")
+    
     resultado = ""
     for letra in mensaje:
-        if 'A' <= letra <= 'Z':
-            num = ord(letra) - ord('A')
-            descifrado = (a_inv * (num - b)) % 26
-            resultado += chr(descifrado + ord('A'))
-        elif 'a' <= letra <= 'z':
-            num = ord(letra) - ord('a')
-            descifrado = (a_inv * (num - b)) % 26
-            resultado += chr(descifrado + ord('a'))
-        else:
-            resultado += letra  # Mantener otros caracteres sin cambios
+        if letra in alfabeto:
+            pos = alfabeto.index(letra)
+            nueva_pos = (a_inv * (pos - b)) % 27
+            resultado += alfabeto[nueva_pos]
+            
     return resultado
 
 def main():
@@ -57,7 +59,7 @@ def main():
             break
 
         try:
-            a = int(input("Ingrese el valor de 'a' (debe ser coprimo con 26): "))
+            a = int(input("Ingrese el valor de 'a' (debe ser coprimo con 27): "))
             b = int(input("Ingrese el valor de 'b': "))
 
             if opcion == '1':
