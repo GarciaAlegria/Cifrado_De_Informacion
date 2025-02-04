@@ -1,38 +1,29 @@
-# Generador de Cifrado y Conversiones en Python 💻
-Este ejercicio incluye una serie de funciones en Python que permiten realizar múltiples conversiones entre representaciones de texto y binario, aplicar operaciones XOR, y generar llaves dinámicas para cifrados. Todo el código está diseñado sin el uso de librerías externas.
+# Generador de Cifrado y Análisis de Frecuencia en Python 💻
+Este ejercicio incluye una serie de funciones en Python que permiten cifrar y descifrar textos utilizando distintos algoritmos de cifrado clásico, así como analizar la frecuencia de aparición de letras en un texto cifrado en comparación con la distribución teórica del español.
 ## Funcionalidades 🧠
-1. Conversión de Texto a Binario
-- ASCII a Binario: Convierte palabras en texto ASCII a su representación binaria.
-- BASE64 a Binario: Convierte palabras codificadas en Base64 a su representación binaria.
+1. Cifrados Clásicos
+- Cifrado César: Aplica un desplazamiento fijo a cada letra del texto.
+- Cifrado Afin: Utiliza una transformación basada en una función afín para modificar las letras del mensaje.
+- Cifrado Vigenère: Emplea una clave de varias letras para realizar un desplazamiento variable en el texto.
 
-2. Conversión de Binario a Otros Formatos
-- Binario a Base64: Convierte cadenas binarias a su representación en Base64.
-- Binario a ASCII: Convierte cadenas binarias a texto ASCII.
-- Base64 a ASCII (vía Binario): Realiza una conversión de Base64 a ASCII pasando por su representación binaria.
-
-3. Operación XOR
-- Aplica la operación XOR entre cadenas binarias.
-
-4. Generación de Llaves Dinámicas
-- Genera llaves dinámicas utilizando caracteres ASCII imprimibles, sin depender de librerías externas.
-
-5. Cifrado con Llave Fija y Dinámica
-- Llave Fija: Aplica un cifrado XOR entre el texto dado y una llave fija.
-- Llave Dinámica: Genera una llave dinámica de tamaño especificado y aplica un cifrado XOR con ella.
+2. Análisis de Frecuencia
+- Obtiene la frecuencia de aparición de cada letra en un texto cifrado.
+- Compara la distribución obtenida con la distribución teórica del idioma español.
+- Representa visualmente la comparación en un gráfico de barras para detectar patrones en el texto cifrado.
 
 # Historia del Cifrado
-El cifrado ha sido una herramienta fundamental en la protección de información desde tiempos antiguos. Una de las primeras técnicas conocidas es el Cifrado César, utilizado por Julio César para enviar mensajes secretos durante sus campañas militares en Roma. Este método consistía en desplazar las letras del alfabeto por un número fijo de posiciones, haciendo que el mensaje fuera ilegible para cualquier persona que no conociera la clave de desplazamiento.
+El cifrado ha sido una herramienta fundamental en la protección de información desde tiempos antiguos. Una de las primeras técnicas conocidas es el Cifrado César, utilizado por Julio César para enviar mensajes secretos durante sus campañas militares en Roma. Este método consistía en desplazar las letras del alfabeto por un número fijo de posiciones, haciendo que el mensaje fuera ilegible para cualquier persona que no conociera la clave de desplazamiento. Con el tiempo, surgieron mejoras como el Cifrado Afin, que utiliza operaciones matemáticas para aumentar la complejidad del cifrado, y el Cifrado Vigenère, que emplea una clave repetitiva para generar desplazamientos variables y hacer el cifrado más resistente a ataques de frecuencia.
 
 # Cómo Ejecutar el Código
-1. Descarga el archivo parte2.py
+1. Descarga el archivo (cualquiera de los algoritmos).py y el archivo ipynb
 2. Abre una terminal o entorno de desarrollo y ejecuta el archivo:
    ```python
-   python parte2.py
+   python cualquiera de los algoritmos.py
    ```
 # Contribuciones
-¡Las contribuciones son bienvenidas! Si tienes ideas para mejorar este ejercicio o agregar nuevas funcionalidades, no dudes en enviar un pull request.
+¡Las contribuciones son bienvenidas! Si tienes ideas para mejorar este laboratorio o agregar nuevas funcionalidades, no dudes en enviar un pull request.
 
 # Licencia
-Este proyecto es de uso libre para fines educativos y personales. Por favor, da el crédito correspondiente si utilizas este código en tus proyectos u ejercicios.
+Este laboratorio es de uso libre para fines educativos y personales. Por favor, da el crédito correspondiente si utilizas este código en tus proyectos u ejercicios.
 
    
