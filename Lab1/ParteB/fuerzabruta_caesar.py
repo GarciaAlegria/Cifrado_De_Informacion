@@ -1,3 +1,9 @@
+# Autor: Abner Ivan Garcia Alegria - 21285
+# Fecha: 2024/04/02
+# Descripción: Laboratorio 1 parte B - fuerza bruta cesar
+# Universidad del Valle de Guatemala
+# Cifrados de Información
+
 import math
 import collections
 
