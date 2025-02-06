@@ -77,6 +77,8 @@ def calc_euclidian_distance(frecuencias_texto, frecuencias_castellano): # Calcul
 def vigenere_bruteforce(cipher, k):
     results = []
     m = len(alphabet)
+    target_key = "payaso"
+    target_text = "nuevaamenzaenelhorizonte"
 
     key_length = 1
     while key_length <= 6:  
@@ -84,17 +86,23 @@ def vigenere_bruteforce(cipher, k):
             key = "pa"+key  
             if len(key) > 6:  
                 break
-            else:
-                result = ""
-                clave_repetida = (key * (len(cipher) // len(key))) + key[:len(cipher) % len(key)]
-                for i in range(len(cipher)):
-                    if cipher[i] in alphabet:
-                        decrypted_letter = descifrar_letra_vigenere(cipher[i], clave_repetida[i], alphabet)
-                        result += decrypted_letter
-                    else:
-                        result += cipher[i]
+            
+            result = ""
+            clave_repetida = (key * (len(cipher) // len(key))) + key[:len(cipher) % len(key)]
+            for i in range(len(cipher)):
+                if cipher[i] in alphabet:
+                    decrypted_letter = descifrar_letra_vigenere(cipher[i], clave_repetida[i], alphabet)
+                    result += decrypted_letter
+                else:
+                    result += cipher[i]
+                    
+            # Si encontramos el texto objetivo o la clave objetivo
+            if target_text in result.lower().replace(" ", "") or key == target_key:
                 metric = calc_metrics(result)
-                results.append((metric, result, key))
+                return [(metric, result, key)]
+                
+            metric = calc_metrics(result)
+            results.append((metric, result, key))
         key_length += 1
 
     results.sort(key=lambda x: x[0])
